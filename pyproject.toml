@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "dev"
+version = "0.1.0"
+description = ""
+authors = ["ralphribeiro <ralph_ribeiro@msn.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+matplotlib = "^3.3.2"
+numpy = "^1.19.3"
+
+[tool.poetry.dev-dependencies]
+pylama = "^7.7.1"
+autopep8 = "^1.5.4"
+radon = "^4.3.2"
+MutPy = "^0.6.1"
+ipython = "^7.18.1"
+ipdb = "^0.13.4"
+coverage = "^5.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
