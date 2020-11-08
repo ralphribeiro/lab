@@ -16,7 +16,7 @@
 from time import perf_counter_ns
 
 
-def cria_lista_ordenada(range_: int) -> list:
+def cria_lista_ordenada(range_: int):
     return range(range_)
 
 def busca_linear(lista: list, n: int):
