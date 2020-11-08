@@ -1,19 +1,9 @@
 from random import randint
-from time import perf_counter_ns
 from unittest import TestCase
 
+from utils.timer import timer
 from src.busca import (busca_binaria_sem_recursao, cria_lista_ordenada,
                        busca_linear, busca_binaria_recursao)
-
-
-def timer(func):
-    def inner(*args):
-        inicio = perf_counter_ns()
-        r = func(*args)
-        fim = perf_counter_ns()
-        print(f'tempo execução: {(fim-inicio)/10**6}ms')
-        return r
-    return inner
 
 
 lista = cria_lista_ordenada(10**10)
