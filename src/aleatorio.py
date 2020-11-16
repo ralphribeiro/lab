@@ -85,6 +85,7 @@ print(has_duplicates(lst), lst)
 
 # 10.8
 
+
 def birthday_paradox(n):
     p = (1.0/365)**n
     for i in range((366-n), 366):
@@ -94,5 +95,38 @@ def birthday_paradox(n):
 
 print(birthday_paradox(23))
 
+
+# 10.9
+
+def read_file(path: str):
+    with open(path) as f:
+        return [line.strip() for line in f.readlines()]
+
+
+p = '../assets/words.txt'
+sz = read_file(p)
+print(len(sz))
+
+
+# 10.10
+
+def binary_search(path: str, item: str):
+    words = read_file(path)
+    first = 0
+    last = len(words) - 1
+
+    while first <= last:
+        middle = (first + last) // 2
+        if words[middle] == item:
+            return item
+        else:
+            if item < words[middle]:
+                last = middle - 1
+            else:
+                first = middle + 1
+
+
+w = 'paraform'
+print(binary_search(p, w))
 
 # https://pense-python.caravela.club/10-listas/15-exercicios.html
