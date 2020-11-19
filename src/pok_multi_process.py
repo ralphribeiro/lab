@@ -1,4 +1,3 @@
-from multiprocessing import process
 from os import mkdir
 from os.path import dirname, exists, join as p_join
 from requests import get
@@ -49,16 +48,15 @@ def download_sprite(pok: dict):
 
 
 def get_sprites(qtt_ini, qtt_fin):
-    raws = [get_pokemon(n) for n in range(qtt_ini, qtt_fin + 1)]
-    poks = [get_sprite_link(p) for p in raws]
-
+    raws = (get_pokemon(n) for n in range(qtt_ini, qtt_fin + 1))
+    poks = (get_sprite_link(p) for p in raws)
     for p in poks:
         download_sprite(p)
 
 @timer
 def main():
     process = []
-    num_sprites = 100
+    num_sprites = 20
     num_process = 10
     args = [(v+1, v+num_process) for v in range(0, num_sprites, num_process)]
     for a in args:
