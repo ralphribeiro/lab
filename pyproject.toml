@@ -12,6 +12,7 @@ requests = "^2.25.0"
 aiohttp = "^3.7.3"
 aiofiles = "^0.6.0"
 celery = "^5.0.2"
+Faker = "^5.0.1"
 
 [tool.poetry.dev-dependencies]
 pylama = "^7.7.1"
