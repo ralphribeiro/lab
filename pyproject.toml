@@ -13,6 +13,8 @@ aiohttp = "^3.7.3"
 aiofiles = "^0.6.0"
 celery = "^5.0.2"
 Faker = "^5.0.1"
+pandas = "^1.1.5"
+scipy = "^1.5.4"
 
 [tool.poetry.dev-dependencies]
 pylama = "^7.7.1"
