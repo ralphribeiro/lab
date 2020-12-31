@@ -29,7 +29,6 @@ def dec(fmt):
 def gen_primes():
     D = {}
     q = 2
-
     while True:
         if q not in D:
             yield q
@@ -47,8 +46,14 @@ def sum_primes_calc(n):
     _sum = 0
     for _ in range(n):
         _sum += next(primes)
-    return print(_sum)
+    print(_sum)
+    return _sum
 
 
-sum_primes_calc(4)
-sum_primes_calc(2000000)
+def main():
+    sum_primes_calc(4)
+    sum_primes_calc(2000000)
+
+
+if __name__ == "__main__":
+    main()
