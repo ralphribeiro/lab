@@ -34,7 +34,7 @@ def timer(func):
     return inner
 
 
-async def get_sprite_url(session: ClientSession, url):
+async def get_sprite_url(session: ClientSession, url) -> str:
     async with session.get(url) as response:
         logging.info(f'baixando url sprite: {url}')
         response.raise_for_status()
@@ -51,7 +51,7 @@ async def download_sprite(session: ClientSession, url: str) -> bytes:
     return content
 
 
-async def write_file(name: str, data: bytes):
+async def write_file(name: str, data: bytes) -> int:
     async with aopen(f'{name}.png', 'wb') as f:
         logging.info(f'salvando: {name}')
         r = await f.write(data)
