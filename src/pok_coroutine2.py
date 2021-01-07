@@ -1,5 +1,4 @@
 import asyncio
-from asyncio import AbstractEventLoop
 import logging
 from os import mkdir
 from os.path import dirname, exists, join as p_join
