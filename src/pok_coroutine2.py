@@ -1,7 +1,8 @@
 import asyncio
 import logging
 from os import mkdir
-from os.path import dirname, exists, join as p_join
+from os.path import dirname, exists
+from os.path import join as p_join
 from shutil import rmtree
 from time import perf_counter_ns
 from urllib.parse import urljoin
@@ -10,10 +11,11 @@ from aiofiles import open as aopen
 from aiohttp import ClientSession
 from requests import get
 
+
 logging.basicConfig(level=logging.INFO)
 
 base_url = 'https://pokeapi.co/api/v2/'
-pokemons = get(urljoin(base_url, 'pokemon/?limit=100')).json()['results']
+poks = get(urljoin(base_url, 'pokemon/?limit=100')).json()['results']
 
 folder_name = 'sprites'
 _path = p_join(dirname(__file__), folder_name)
@@ -33,51 +35,43 @@ def timer(func):
     return inner
 
 
-async def get_sprite_url(session: ClientSession, url) -> str:
+async def get_sprite_url(session: ClientSession, url: str) -> str:
     async with session.get(url) as response:
         logging.info(f'baixando url sprite: {url}')
         response.raise_for_status()
         result = await response.json()
-        sprite_url = result['sprites']['front_default']
-        return sprite_url
+        return result['sprites']['front_default']
 
 
-async def download_sprite(session: ClientSession, url: str) -> bytes:
-    content = bytes()
+async def download_bin(session: ClientSession, url: str) -> bytes:
     async with session.get(url) as response:
         logging.info(f'baixando: {url.rsplit("/")[-1]}')
-        content = await response.content.read()
-    return content
+        return await response.content.read()
 
 
-async def write_file(name: str, data: bytes) -> int:
+async def save_file(name: str, data: bytes) -> int:
     async with aopen(f'{name}.png', 'wb') as f:
         logging.info(f'salvando: {name}')
-        r = await f.write(data)
-        return r
+        return await f.write(data)
 
 
-async def get_sprites(url_sprite: str, name: str):
+async def pipe_sprt(url_sprite: str, name: str):
     async with ClientSession() as session:
         url = await get_sprite_url(session, url_sprite)
-        content = await download_sprite(session, url)
-        ret = await write_file(p_join(_path, name), content)
-        logging.info(f'feito! {name}')
+        content = await download_bin(session, url)
+        ret = await save_file(p_join(_path, name), content)
+        logging.info(f'feito! {name}, {ret} bytes')
 
 
-async def vai():
-    tasks = []
-    for p in pokemons:
-        t = asyncio.create_task(get_sprites(p['url'], p['name']))
-        tasks.append(t)
-
+async def processing():
+    tasks = [asyncio.create_task(pipe_sprt(p['url'], p['name'])) for p in poks]
     for task in tasks:
         await task
 
 
 @timer
 def main():
-    asyncio.run(vai())
+    asyncio.run(processing())
 
 
 if __name__ == '__main__':
