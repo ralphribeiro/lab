@@ -11,7 +11,7 @@ from aiofiles import open as aopen
 from aiohttp import ClientSession
 from requests import get
 
-# logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 base_url = 'https://pokeapi.co/api/v2/'
 pokemons = get(urljoin(base_url, 'pokemon/?limit=100')).json()['results']
@@ -66,10 +66,10 @@ async def get_sprites(url_sprite: str, name: str):
         logging.info(f'feito! {name}')
 
 
-async def vai(loop: AbstractEventLoop):
+async def vai():
     tasks = []
     for p in pokemons:
-        t = loop.create_task(get_sprites(p['url'], p['name']))
+        t = asyncio.create_task(get_sprites(p['url'], p['name']))
         tasks.append(t)
 
     for task in tasks:
@@ -78,8 +78,7 @@ async def vai(loop: AbstractEventLoop):
 
 @timer
 def main():
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(vai(loop))
+    asyncio.run(vai())
 
 
 if __name__ == '__main__':
