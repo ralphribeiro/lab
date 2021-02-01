@@ -30,27 +30,25 @@ def collatz_sequence(n: int):
     return len(ret), ret
 
 
-def main(*args):
+def largest_collatz_sequence(*args):
     init, limit = args
     largest_len = int()
     largest_seq = list()
-    for n in reversed(range(init, limit)):
+    for n in range(init, limit):
         len_, list_ = collatz_sequence(n)
         if len_ > largest_len:
             largest_len, largest_seq = len_, list_
     return largest_len, largest_seq
 
 
-if __name__ == "__main__":
+def main(workers: int, num_sequencies: int):
     with futures.ProcessPoolExecutor() as executor:
         future_map = defaultdict()
-        step = 10**6 // 8
-        init = 5
-        limit = step
-        for n in range(8):
-            future_map.update({executor.submit(main, init, limit): n})
-            limit += step
-            init += (step + 1)
+        div = num_sequencies // workers
+        for n in range(workers):
+            future_map.update({
+                executor.submit(largest_collatz_sequence, n*div, (n+1)*div): n
+            })
 
         res = list()
         for future in futures.as_completed(future_map):
@@ -58,5 +56,9 @@ if __name__ == "__main__":
             b = future.result()
             res.append(b)
 
-        print(max(res))
+        return max(res)
 
+
+if __name__ == "__main__":
+    r = main(8, 10**6)
+    print(r)
