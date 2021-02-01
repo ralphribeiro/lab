@@ -52,7 +52,7 @@ def gen_triangular_nums():
         tn = n * (n + 1) // 2
 
 
-def get_len_divisors(n: int):
+def get_len_divisors():
     """
     Get len of divisors of triangular numbers.
     """
@@ -78,4 +78,4 @@ def get_len_divisors(n: int):
     print(len_)
 
 
-print(get_len_divisors(500))
+print(get_len_divisors())
