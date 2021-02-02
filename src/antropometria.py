@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Medidas:
+    # https://www.unicesumar.edu.br/epcc-2009/wp-content/uploads/sites/77/2016/07/mena_cristina_marcolino2.pdf
     estatura_1 = 177.5
     altura_poplítea_sentado_2 = 46
     altura_superior_coxa_assento_3 = 58.5 - altura_poplítea_sentado_2
