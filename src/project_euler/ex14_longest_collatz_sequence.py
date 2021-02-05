@@ -20,7 +20,7 @@
 from concurrent import futures
 from collections import defaultdict
 from os import cpu_count
-
+from sys import argv
 
 def collatz_sequence(n: int):
     ret = [n]
@@ -60,6 +60,11 @@ def main(workers: int, num_sequencies: int):
 
 
 if __name__ == "__main__":
-    workers = cpu_count()
+    
+    if (len(argv)) == 2:
+        workers = int(argv[1])
+    else:    
+        workers = cpu_count()
+    
     r = main(workers, 10**6)
     print(r)
