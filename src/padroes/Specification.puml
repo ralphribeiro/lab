@@ -1,0 +1,31 @@
+@startuml
+class BaseSpecification{
+    abstract is_satisfied_by()
+    and_()
+    or_()
+    not_()
+}
+
+class AndSpecification{
+    first: BaseSpecification
+    second: BaseSpecification
+    concrete is_satisfied_by()
+}
+
+class OrSpecification{
+    first: BaseSpecification
+    second: BaseSpecification
+    concrete is_satisfied_by()
+}
+
+class NotSpecification{
+    first: BaseSpecification
+    second: BaseSpecification
+    concrete is_satisfied_by()
+}
+
+BaseSpecification --* AndSpecification
+BaseSpecification --* OrSpecification
+BaseSpecification --* NotSpecification
+
+@enduml

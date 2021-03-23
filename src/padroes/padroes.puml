@@ -1,0 +1,95 @@
+@startmindmap
+
+<style>
+node {
+    Padding 12
+    HorizontalAlignment center
+    LineColor red
+    LineThickness 2.0
+    BackgroundColor gold
+    RoundCorner 40
+    FontSize 10
+}
+
+rootNode {
+    LineStyle 8.0;3.0
+    LineColor red
+    BackgroundColor white
+    LineThickness 1.0
+    RoundCorner 0
+    Shadowing 0.0
+}
+
+leafNode {
+    LineColor black
+    LineThickness 0.5
+    RoundCorner 10
+    Padding 2
+    BackgroundColor none
+    FontSize 8
+    MaximumWidth 450
+    Margin 5
+}
+
+arrow {
+    LineStyle 0
+    LineThickness 0.5
+    LineColor green
+}
+</style>
+* Padrões
+
+**_ Criacionais
+***_ Factory Method
+**** Fornece uma interface para criar objetos em uma superclasse, mas permite que as subclasses alterem o tipo de objetos que serão criados.
+***_ Abstract Factory
+**** Permite que você produza famílias de objetos relacionados sem ter que especificar suas classes concretas.
+***_ Builder
+**** Permite a você construir objetos complexos passo a passo. O padrão permite que você produza diferentes tipos e representações de um objeto usando o mesmo código de construção.
+***_ Prototype
+**** Permite copiar objetos existentes sem fazer seu código ficar dependente de suas classes.
+***_ Singleton
+**** Permite a você garantir que uma classe tenha apenas uma instância, enquanto provê um ponto de acesso global para essa instância.
+
+**_ Estruturais
+***_ Adapter
+**** Permite objetos com interfaces incompatíveis colaborarem entre si.
+***_ Bridge
+**** Permite que você divida uma classe grande ou um conjunto de classes intimamente ligadas em duas hierarquias separadas—abstração e implementação—que podem ser desenvolvidas independentemente umas das outras.
+***_ Composite
+**** Permite que você componha objetos em estruturas de árvores e então trabalhe com essas estruturas como se elas fossem objetos individuais.
+***_ Decorator
+**** Permite que você acople novos comportamentos para objetos ao colocá-los dentro de invólucros de objetos que contém os comportamentos.
+***_ Facade
+**** Fornece uma interface simplificada para uma biblioteca, um framework, ou qualquer conjunto complexo de classes.
+***_ Flyweight
+**** Permite a você colocar mais objetos na quantidade de RAM disponível ao compartilhar partes comuns de estado entre os múltiplos objetos ao invés de manter todos os dados em cada objeto.
+***_ Proxy
+**** permite que você forneça um substituto ou um espaço reservado para outro objeto. Um proxy controla o acesso ao objeto original, permitindo que você faça algo ou antes ou depois do pedido chegar ao objeto original.
+***_ Specification
+**** Descreve uma regra de negócios que pode ser combinada com outras regras de negócios.
+
+**_ Comportamentais
+***_ Chain of Responsability
+**** Permite que você passe pedidos por uma corrente de handlers. Ao receber um pedido, cada handler decide se processa o pedido ou o passa adiante para o próximo handler na corrente.
+***_ Command
+**** Transforma um pedido em um objeto independente que contém toda a informação sobre o pedido. Essa transformação permite que você parametrize métodos com diferentes pedidos, atrase ou coloque a execução do pedido em uma fila, e suporte operações que não podem ser feitas.
+***_ Iterator
+**** Permite a você percorrer elementos de uma coleção sem expor as representações dele (lista, pilha, árvore, etc.)
+***_ Mediator
+**** Permite que você reduza as dependências caóticas entre objetos. O padrão restringe comunicações diretas entre objetos e os força a colaborar apenas através do objeto mediador.
+***_ Memento
+**** Permite que você salve e restaure o estado anterior de um objeto sem revelar os detalhes de sua implementação.
+***_ Observer
+**** Permite que você defina um mecanismo de assinatura para notificar múltiplos objetos sobre quaisquer eventos que aconteçam com o objeto que eles estão observando.
+***_ State
+**** Permite que um objeto altere seu comportamento quando seu estado interno muda. Parece como se o objeto mudasse de classe.
+***_ Strategy
+**** Permite que você defina uma família de algoritmos, coloque-os em classes separadas, e faça os objetos deles intercambiáveis.
+***_ Template Method
+**** Define o esqueleto de um algoritmo na superclasse mas deixa as subclasses sobrescreverem etapas específicas do algoritmo sem modificar sua estrutura.
+***_ Visitor
+**** Permite que você separe algoritmos dos objetos nos quais eles operam.
+
+
+@endmindmap
