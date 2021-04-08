@@ -117,7 +117,7 @@ def trajetoria():
         p = obtem_ponto_pela_equacao_parametrica(ponto_final, vetor, s*0.1)
         yield Ponto(p[0], p[1], p[2])
 
-    fim = np.array([0, 0, -50])
+    fim = np.array([10, -20, -50])
     vetor = fim - inicio
 
     for s in range(segmentos):
