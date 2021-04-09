@@ -1,0 +1,154 @@
+@startmindmap
+<style>
+node {
+    Padding 5
+    HorizontalAlignment center
+    LineColor brown
+    LineThickness 1.0
+    BackgroundColor white
+    RoundCorner 20
+    FontSize 10
+    MaximumWidth 200
+
+}
+
+rootNode {
+    FontSize 20
+    FontColor brown
+    LineStyle 8.0;3.0
+    LineColor brown
+    BackgroundColor yellow
+    LineThickness 2.0
+    RoundCorner 0
+    Shadowing 0.0
+}
+
+leafNode {
+    LineColor green
+    LineThickness 0.5
+    RoundCorner 10
+    Padding 2
+    BackgroundColor none
+    FontSize 8
+    MaximumWidth 450
+    Margin 5
+}
+
+arrow {
+    LineStyle 0
+    LineThickness 0.5
+    LineColor green
+}
+</style>
+
+* Domain-Drive Design
+** Estratégico / Modelagem estratégica
+*** Contextos limitados
+**** Container contextual, não somente um modelo, frequentemente é uma aplicação ou um serviço de negócio
+**** Domínio
+***** Cada tipo de organização tem seu próprio domínio de know-how e maneira de fazer as coisas. Esse reino de compreensão e seus métodos para realizar suas operações é seu Domínio
+***** Domínio pricipal
+****** Onde reside a funcionalidade principal do domínio
+***** Subdomínios
+****** Os demais domínios que suportam o princial
+****** Subdomínios de suporte
+****** Subdomínios genéricos
+*** Linguagem ubíqua
+**** Linguagem do negócio usada por todos num contexto limitado
+*** Mapas de contextos
+**** Mapa da situação atual de todos os contextos limitados e seus relacionamentos
+**** Relacionamentos
+***** Parceria
+***** Kernel compartilhado
+***** Desenvolvimento cliente-servidor
+***** Comformista
+***** Camada anti-corrupção ACL
+***** Serviço de host aberto OHS
+***** Linguagem publicada PL
+***** Caminhos separados
+***** Grande bola de lama
+
+
+** Tático / Design tático, Conjunto de técnicas usados para construção do Modelo de Domínio
+*** Entidades
+*** Objetos de valor
+*** Agregados
+*** Serviços
+*** Reposiórios
+*** Fábricas
+*** Eventos
+*** Módulos
+
+left
+** Arquitetura
+*** Camadas
+**** Interface
+***** Modelo de apresentação
+***** Serviço de host aberto
+**** Aplicação
+***** Serviços de aplicação
+****** Fábricas
+****** Publicador de eventos de domínio
+***** Serviços de domínio - ênfase na estratégia do negócio
+****** Eventos de domínio
+**** Infraestrutura
+***** Repositórios
+***** Módulos
+****** DIP
+**** Relacionamentos
+***** Estrito - Acoplamento somente às camadas abaixo
+***** Relaxado - Camada de nível alto acessa qualquer abaixo
+***** Camadas inferiores podem se acoplar livremente às camadas superiores
+****** Observer
+****** Mediator
+*** Hexagonal ou Porta e adaptadores
+**** Portas - Canais com o mundo externo
+**** Adaptadores - Adapta os dados que trafega pelas porta
+*** SOA
+**** Pincípios
+***** Contrato
+***** Acoplamento solto
+***** Abstração
+***** Autonomia
+***** Statelessness
+***** Apto a ser descoberto
+***** Apto a composição
+**** REST / RESTful / SOAP / Mensageria
+*** CQRS
+**** Separação dos modelos de comandos dos de leitura
+**** Comandos
+***** Categorizados
+****** Cada serviço de aplicativo pode ter vários métodos. A principal vantagem aqui é a simplicidade. Esse tipo de manipulador é bem conhecido, fácil de criar e manter. 
+***** Dedicados
+****** Cada um seria uma única classe com um método. Isso tem vantagens claras: há uma única responsabilidade por manipulador / processador; cada manipulador pode ser reimplantado independentemente ; os tipos de manipulador podem ser dimensionados para gerenciar grandes volumes de certos tipos de comandos.
+****** Permite Assincronia
+****** Consistência eventual
+**** Leituras
+***** Eventos
+***** Modelos de dados desnornalizado
+**** Pub/Sub
+***** Observer
+*** Orientada a Eventos EDA
+**** Promove a produção, detecção, consumo e reação a eventos
+**** Pipe and Filters
+***** Pipes são canais de mensagem
+***** Portas conecta Filter aos Pipes
+***** Filters são processadores
+***** Pocessadores separados
+***** Acoplamento fraco
+***** Intercâmbialidade
+***** Filters podese ser multi Pipe
+***** Use o mesmo tipo de Filter em paralelo
+**** Processo de longa duração / Sagas
+***** Tarefa composta
+***** Conjunto de atividades num conjunto de agragados
+***** Processo sem estado, sendo enriquecido a cada eventos
+**** Event-Sourcing
+***** Persistência de dos eventos com carimbo de data, sendo possível recriar o agregado em determinado momento do passado
+**** Data Fabric e grid-based distributed computing
+***** Replicação de dados / cache
+***** Suporta o estilo Event-Driven
+***** Queries contínuas
+***** Processamento distribuído
+
+@endmindmap
