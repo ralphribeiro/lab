@@ -28,7 +28,7 @@ leafNode {
     LineThickness 0.5
     RoundCorner 10
     Padding 2
-    BackgroundColor none
+    BackgroundColor white
     FontSize 8
     MaximumWidth 450
     Margin 5
