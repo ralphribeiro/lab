@@ -30,8 +30,9 @@ leafNode {
     Padding 2
     BackgroundColor white
     FontSize 8
-    MaximumWidth 450
+    MaximumWidth 350
     Margin 5
+    HorizontalAlignment left
 }
 
 arrow {
@@ -71,6 +72,35 @@ arrow {
 
 ** Tático / Design tático, Conjunto de técnicas usados para construção do Modelo de Domínio
 *** Entidades
+**** Identidade
+***** Criação
+****** Pelo usuário
+****** Pela aplicação
+****** Pelo mecanismo de persistência
+******* Identidade substituta
+****** Por outro contexto limitado
+***** Layer Supertype
+***** Imutável / Mantê-la estável
+***** Quais as razões para mudar?
+**** Primeiro queremos nos concentrar apenas em atributos/propriedades que fornecem identidade e permitem a correspondência em consultas
+**** Interface de Revelação de Intenção
+**** Regras e Responsabilidades
+**** Construção
+***** Fábricas
+**** Validação*
+***** Atributos / Propriedades
+****** Auto-encapsulamento
+****** Verificação da sanidade
+***** Objetos inteiros
+****** Specification
+****** Strategy
+****** Verificação de atividades mais simples
+****** Separar em objetos de validação*
+***** Composição de objetos
+****** Validações adiadas
+****** Em serviços de domínio
+***** Rastreamento de mudanças*
+****** Event Sourcing
 *** Objetos de valor
 *** Agregados
 *** Serviços
@@ -78,6 +108,7 @@ arrow {
 *** Fábricas
 *** Eventos
 *** Módulos
+
 
 left
 ** Arquitetura
