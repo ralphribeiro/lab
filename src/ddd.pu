@@ -6,20 +6,20 @@ node {
     LineColor brown
     LineThickness 1.0
     BackgroundColor white
-    RoundCorner 20
+    RoundCorner 10
     FontSize 10
     MaximumWidth 200
 
 }
 
 rootNode {
-    FontSize 20
+    FontSize 25
     FontColor brown
     LineStyle 8.0;3.0
     LineColor brown
-    BackgroundColor yellow
+    BackgroundColor lightyellow
     LineThickness 2.0
-    RoundCorner 0
+    RoundCorner 2
     Shadowing 0.0
 }
 
@@ -31,18 +31,18 @@ leafNode {
     BackgroundColor white
     FontSize 8
     MaximumWidth 350
-    Margin 5
+    Margin 3
     HorizontalAlignment left
 }
 
 arrow {
     LineStyle 0
     LineThickness 0.5
-    LineColor green
+    LineColor green    
 }
 </style>
 
-* Domain-Drive Design
+* DDD
 ** Estratégico / Modelagem estratégica
 *** Contextos limitados
 **** Container contextual, não somente um modelo, frequentemente é uma aplicação ou um serviço de negócio
@@ -86,7 +86,7 @@ arrow {
 **** Interface de Revelação de Intenção
 **** Regras e Responsabilidades
 **** Construção
-***** Fábricas
+***** Factory
 **** Validação*
 ***** Atributos / Propriedades
 ****** Auto-encapsulamento
@@ -102,10 +102,41 @@ arrow {
 ***** Rastreamento de mudanças*
 ****** Event Sourcing
 *** Objetos de valor
+**** Mede, quantifica ou descreve algo no domínio.
+**** Pode ser mantido como imutável.
+**** Modela um todo conceitual, compondo atributos relacionados como uma unidade integral.
+***** Factory
+***** Builder
+**** É completamente substituível quando a medição ou descrição muda.
+**** Pode ser comparado com outros usando a igualdade de valor.
+**** Fornece a seus colaboradores o comportamento Side-Effect-Free.
+***** CQS
+***** CQRS
+***** Substituição em vez de mutação
+***** Quando puder, escolha Objetos de valor para modelar integrações. 
+**** Tipos padrão
+***** enum*
+***** State
+***** Como agregado
+****** Service
+****** Factory
+**** Testes
+***** Demonstrar como os vários objetos no modelo de domínio serão usados pelos clientes e o que esses clientes podem esperar ao usá-los.
+**** Implementação
+***** Strategy* (Policy) (sem/com) Separated Interface
+**** Persistência
+***** Repositories
+****** ORM e objetos de valor único.
+****** ORM e muitos valores serializados em uma única coluna.
+****** ORM e muitos valores apoiados por uma entidade de banco de dados.
+****** ORM e muitos valores apoiados por uma tabela de junção.
+****** Objetos ORM e Enum-as-State.
+***** Recuperado junto aos seu agregados e entidades
+***** O modelo de dados deve ser subordinado 
 *** Agregados
 *** Serviços
 *** Reposiórios
-*** Fábricas
+*** Factory
 *** Eventos
 *** Módulos
 
@@ -118,7 +149,7 @@ left
 ***** Serviço de host aberto
 **** Aplicação
 ***** Serviços de aplicação
-****** Fábricas
+****** Factory
 ****** Publicador de eventos de domínio
 ***** Serviços de domínio - ênfase na estratégia do negócio
 ****** Eventos de domínio
