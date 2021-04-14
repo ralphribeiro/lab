@@ -133,11 +133,24 @@ arrow {
 ****** Objetos ORM e Enum-as-State.
 ***** Recuperado junto aos seu agregados e entidades
 ***** O modelo de dados deve ser subordinado 
-*** Agregados
 *** Serviços
+**** Como regra geral, devemos tentar evitar o uso de Repositórios de dentro de Agregados, se possível.
+**** de Domínio
+***** Sem estado
+***** exemplos: \n • Executar um processo de negócios significativo; \n • Transformar um objeto de domínio de uma composição para outra; \n • Calcular um valor que requer entrada de mais de um objeto de domínio.
+***** Implementação
+****** Interfaces separadas no mesmo Módulo
+******* DIP
+******* Hexagonal
+****** Classes concretas especializadas
+**** de Aplicação
+**** de transformação
+**** de Testes
+*** Eventos
+**** Eventos de Domínio
+*** Agregados
 *** Reposiórios
 *** Factory
-*** Eventos
 *** Módulos
 
 
