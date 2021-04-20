@@ -195,7 +195,21 @@ arrow {
 **** Lei de Demeter; Fale, não pergunte.
 **** Evitar injeção de Repositórios e Serviços de Domínio em instâncias do Aggregate. 
 *** Fábricas
+**** Serviços funcionam como Fábricas que produzem Agregados ou Objetos de Valor de vários tipos.
+**** Factory Method
+**** Abstract Method
+***** hierarquia de objetos = dor
 *** Reposiórios
+**** Fornecer repositórios somente para Agregados (na teoria)
+**** Um por repositório
+**** DesignedDomainStereotypeFontColor
+***** Orientado a coleção
+****** Deve imitar uma coleção Set
+***** Orientado a persistência
+****** Data Fabric
+****** NoSQL
+****** Colocar explicitamente () objetos novos e alterados no armazenamento, substituindo efetivamente qualquer valor previamente associado à chave fornecida. Usar esses tipos de armazenamento de dados simplifica muito as gravações e leituras básicas de agregados. Por esse motivo, às vezes são chamados de Aggregate Stores ou Aggregate-Oriented Databases.
+***** É uma proposta potencialmente cara instanciar um Repositório para cada transação.
 
 
 left
