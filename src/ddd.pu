@@ -147,11 +147,55 @@ arrow {
 **** de transformação
 **** de Testes
 *** Eventos
-**** Eventos de Domínio
-*** Agregados
-*** Reposiórios
-*** Factory
+**** de Domínio
+***** Publish-Subscribe/Observer
+****** Não usar a notificação de evento para modificar uma segunda instância do Agregado.
+***** Event Store
+***** Event Sourcing
+****** Enriquecimento de eventos*
+***** Consistência eventual
+***** Com características de agregado
+****** Persistente
+****** Imutável ou Id exclusivo
+****** Confirmação de duas fases
+***** Event Store
+****** Estilos arquiteturais
+******* RESTfull
+******* Messaging Middleware
+**** da Aplicação
 *** Módulos
+**** • Porjetar para se adequar aos conceitos de modelagem.\n• Nomear com a Linguagem ubíqua.\n• Não criar módulos mecanicamente de acordo com com componentes de tipo genérico ou padrões usados na modelagem.\n • Projetar módulos com acoplamento fraco.\n • Se esforçar para ter dependências acíclicas em seus pares onde o acoplamento é necessário.\n• Relaxe um pouco para as regras entre os módulos filho e pai.\n• Não tornar os módulos estáticos, permita-os serem modelados juntos com os objetos que eles organizam.
+**** Nomeação
+***** • organização.contextolimitado.domínio.modelo.\n• organização.contextolimitado.domínio.serviços...
+***** ou modelos e serviços num mesmo Módulo
+***** Levar em consideração que os contextos limitados não devem ser usados como um substituto para os módulos. Usar Módulos para modularizar objetos de domínio coesos e para separar aqueles que não são coesos ou menos coesos.
+*** Agregados
+**** De quem é o trabalho?
+**** Mantê-los pequenos
+**** Referenciados pelo id fora do seu limite.
+**** Simultaneidade
+***** Otimista - Versionamento das Entidades
+**** Consistência
+***** Transacional - Imediata e atômica - dentro dos limites
+****** Unit of Work
+***** Eventual - fora dos limites
+****** Usar como regra
+**** Tentar manter várias instâncias de Aggregate consistentes pode estar dizendo a você que sua equipe perdeu uma invariante.
+**** Disconnected Domain Model (menos favorável)
+***** Quando, opcionalmente, um agregado acessa um outro dentro de sua fronteira usando um repositório (uma forma de carregamento lento).
+**** Usar Repository ou Domain Service para pesquisar objetos dependentes antes de invocar o comportamento Agregado.
+**** motivos para quebra das regras:
+***** CQRS
+***** Por conveniência da interface do usuário
+***** Falta de mecanismos técnicos
+***** Transações globais
+***** Desempenho de consulta
+**** Estimativa de custos
+***** BOTE*
+**** Lei de Demeter; Fale, não pergunte.
+**** Evitar injeção de Repositórios e Serviços de Domínio em instâncias do Aggregate. 
+*** Fábricas
+*** Reposiórios
 
 
 left

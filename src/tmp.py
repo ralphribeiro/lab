@@ -21,9 +21,10 @@ class Moeda:
         return Moeda(self.nome, self.quantidade + other.quantidade)
 
     def __sub__(self, other: Moeda):
+        cls = type(self)
         if not self.nome == other.nome:
             raise ExceçãoMoedaDiferente
-        return Moeda(self.nome, self.quantidade - other.quantidade)
+        return cls(self.nome, self.quantidade - other.quantidade)
 
     def __mul__(self, other: Moeda):
         if not self.nome == other.nome:
