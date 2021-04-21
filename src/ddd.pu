@@ -284,4 +284,22 @@ left
 ***** Queries contínuas
 ***** Processamento distribuído
 
+** Integração de contextos limitados
+*** Meios
+**** RESTfull
+***** Não permite que os clientes sejam completamente autonomos.
+**** Mensageria
+**** RPC
+***** Menos resiliência nos tratamentos de erros.
+**** outros
+*** Princípios da computação distribuída
+**** • A rede não é confiável.\n• Sempre há alguma latência, e talvez muita.\n• A largura de banda não é infinita.\n• Não presuma que a rede é segura.\n• Topologias da rede mudam.\n• Conhecimento e políticas são espalhados por vários administradores.\n• O transporte em rede tem custo.\n• A rede é heterogênea.
+*** Notificação e Eventos
+**** Linguagem publicada
+**** Adaptadores
+**** • Type: Notification format: JSON\n• notificationId: long integer unique identity\n• typeName: text String type of notification, an example type name being com.saasovation.agilepm.domain.model.product.↵backlogItem.BacklogItemCommitted\n• version: integer version of the notification\n• occurredOn: date/time when the notification’s contained Event happened\n• event: JSON payload details; see specific Event types
+**** Os eventos também podem conter com segurança instâncias de Objetos de Valor mais sofisticados (6), o que é especialmente eficaz quando seus tipos de Valor tendem a ser estáveis.
+*** Anticorruption Layer
+**** • Serviço da aplicação cliente\n• Adaptador\n• Tradutor
+
 @endmindmap
