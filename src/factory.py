@@ -23,14 +23,13 @@ class Tipo():
 
 
 class TransporteCaminhão(Transporte):
-    def fabrica_transporte(self):        
+    def fabrica_transporte(self):
         return Caminhão()
 
 
 class TransporteTrem(Transporte):
     def fabrica_transporte(self):
         return Trem()
-
 
 
 class Caminhão(Tipo):
