@@ -332,7 +332,7 @@ left
 **** Um método por fluxo
 **** Cuida da transação e da segurança
 **** Portas e Adaptadores
-****** pode tornar mais difícil nomear métodos de serviço de aplicativo que realizam consultas
+***** pode tornar mais difícil nomear métodos de serviço de aplicativo que realizam consultas
 *** Infraestrutura
 **** Fornece recursos técnicos para para as outras partes do aplicativo
 
