@@ -1,8 +1,7 @@
-from abc import ABC, abstractmethod
+from functools import wra
 
 
-class Transporte(ABC):
-    @abstractmethod
+class Transporte():
     def fabrica_transporte(self):
         print("fabricando: ")
         ...
@@ -11,28 +10,28 @@ class Transporte(ABC):
         transporte = self.fabrica_transporte()
         transporte.transporta()
 
+a = sum([1, 2, 3])
 
 class Tipo():
-    @abstractmethod
     def transporta(self):
         ...
 
-    @abstractmethod
     def no_transporte(self):
         ...
 
 
 class TransporteCaminhão(Transporte):
     def fabrica_transporte(self):
+        super().fabrica_transporte()
         return Caminhão()
-
 
 class TransporteTrem(Transporte):
     def fabrica_transporte(self):
+        super().fabrica_transporte()
         return Trem()
 
 
-class Caminhão(Tipo):
+class Caminhão():
     def transporta(self):
         print("transportar de caminhão")
 
@@ -40,9 +39,9 @@ class Caminhão(Tipo):
         print("siga bem irmão caminhoneiro")
 
 
-class Trem(Tipo):
+class Trem():
     def transporta(self):
-        print("transporte de trem")
+        print("transportar de trem")
 
     def no_transporte(self):
         print("cuidado com os surfistas")

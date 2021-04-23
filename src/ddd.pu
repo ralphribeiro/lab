@@ -303,4 +303,37 @@ left
 *** Anticorruption Layer
 **** • Serviço da aplicação cliente\n• Adaptador\n• Tradutor
 
+** Aplicação
+*** Interface do Usuário
+**** Podem precisar renderizar várias instâncias de Agregado pra poder modificar uma instância por vez. Evitar que o cliente navegue profundamente nos Agregados
+**** DTO Assembler
+***** para camadas de apresetação remotas
+****** poder de optar por interfaces de Mediator
+**** Domain Payload Object (DPO)
+***** tambem pode optar por interfaces de Mediator
+***** Domain Depedency Resolver
+**** View Model
+***** Resista à tentação de produzir representações que sejam um reflexo individual de seu modelo de domínio. 
+**** Use Case Optimal Repository Queries
+***** Repositório
+***** Objetos de Valor
+***** no armazenamento de persistência do modelo de domínio unificado em vez de uma consulta de banco de dados bruto (como SQL) em um armazenamento de consulta / leitura separado
+**** Vários clientes distintos
+***** RIA
+***** DataTransformer
+**** Rendition Adapters e Handling User Edits.
+***** Presentation Model (Atua como um Adapter)
+****** Seu objetivo é separar responsabilidades entre apresentação e visualização.
+****** As vistas são renderizadas com base no modelo de apresentação. Acho que esta é uma forma mais natural e elimina o acoplamento do modelo de apresentação à visualização.
+****** As visualizações são renderizadas pelo modelo de apresentação. Essa maneira tem vantagens de teste, mas requer que o modelo de apresentação se acople à exibição. 
+*** Serviços da Aplicação
+**** Clientes diretos do modelo de domínio
+**** Coordena tarefas e fluxos de casos de uso
+**** Um método por fluxo
+**** Cuida da transação e da segurança
+**** Portas e Adaptadores
+****** pode tornar mais difícil nomear métodos de serviço de aplicativo que realizam consultas
+*** Infraestrutura
+**** Fornece recursos técnicos para para as outras partes do aplicativo
+
 @endmindmap
