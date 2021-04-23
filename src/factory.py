@@ -1,6 +1,3 @@
-from functools import wra
-
-
 class Transporte():
     def fabrica_transporte(self):
         print("fabricando: ")
