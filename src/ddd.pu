@@ -150,7 +150,6 @@ arrow {
 **** de Domínio
 ***** Publish-Subscribe/Observer
 ****** Não usar a notificação de evento para modificar uma segunda instância do Agregado.
-***** Event Store
 ***** Event Sourcing
 ****** Enriquecimento de eventos*
 ***** Consistência eventual
@@ -335,5 +334,58 @@ left
 ***** pode tornar mais difícil nomear métodos de serviço de aplicativo que realizam consultas
 *** Infraestrutura
 **** Fornece recursos técnicos para para as outras partes do aplicativo
+
+** A+ES
+*** Cada alteração na instância de um Agregado não será perdida
+**** • Confiabilidade\n• Inteligencia de negócios e curto e longo prazos\n• Registro de auditoria completo\n• Capacidade de olhar pra trás no tempo para fins de depuração.
+*** Event Streams
+**** • A natureza somente acréscimo tem desempenho muito bom\n• Oferece uma variedade de opções de replicação de dados\n• Sistemas com latência muito baixa
+*** Abordagem centrada em Eventos
+**** • Permite que os desensvolvedores foquem nas ações de comportamentos expressos pela linguagem ubíqua\n• Evita a incompatibilidade de impedância potencial do mapeamento objeto-relaciona\n• Pode levar a sistemas mais robustos e com tolerância a mudanças.
+*** Desvantagens: não é uma bala de prata!
+**** • Requer um conhecimento profundo do domínio do negócio\n• Falta de ferramentas e de um corpo consistente de conhecimento neste campo*\n• Número limitado de desenvolvedores experientes\n• Requer CQRS, aumentando a carga cognitiva e a curva de aprendizado.
+*** Implementação
+**** Dividir em duas classes: estado e comportamento, com o primeiro sendo mantido pelo segundo
+**** Resumo: 
+***** 1. Um cliente invoca um método em um serviço de aplicativo.
+***** 2. Obtenha todos os Serviços de Domínio necessários para realizar a operação comercial.
+***** 3. Com a identidade da instância Aggregate fornecida pelo cliente, recupere seu Fluxo de Eventos.
+***** 4. Reconstitua a instância de agregado aplicando a ela todos os eventos do fluxo.
+***** 5. Executar uma operação comercial fornecida pelo Agregado, passando em todos os parâmetros exigidos pelo contrato da interface.
+***** 6. O Agregado pode despachar duas vezes para quaisquer Serviços de Domínio fornecidos, instâncias de outros Agregados e assim por diante e gerará novos Eventos como resultado da operação.
+***** 7. Assumindo que nenhuma operação de negócios falhou, anexe todos os eventos recém-gerados ao Stream usando a versão do Stream para proteção contra conflitos de simultaneidade.
+***** 8. Publique eventos recém-anexados do Event Store para assinantes usando sua escolha de infraestrutura de mensagens.
+**** Commmands
+***** Fácil tornar distribuído
+***** Desacoplamento temporal do cliente para a aplicação
+**** Lambdas*
+**** Controle de concorrência
+***** Event conflict resolution
+**** Liberdade estrutural
+**** Performance
+***** Cache Event Streams
+***** Reproduzir todos o eventos a partir de se instantâneo mais recente no Fluxo de Eventos
+**** Persistência
+***** Relacional
+****** 1. Comece uma transação.
+****** 2. Verifique se o Event Store mudou da versão esperada; em caso afirmativo, lance uma exceção.
+****** 3. Se não houver conflitos de simultaneidade, anexe os Eventos.
+****** 4. Confirme a transação.
+***** Blob
+*** Torna mais fácil o prjeto de novos Agregados
+*** Read Model Projections
+*** Pode ser usado com design de Agregado
+*** Ferramentas e padrões de suporte:
+**** Event Serializer
+**** Event Immutability
+**** Value Objects
+**** Geração de contratos
+***** Manter centenas de contratos de eventos (e comandos) manualmente é entediante e sujeito a erros. Geralmente é mais eficiente expressar suas definições em alguma linguagem compacta de domínio específico (DSL) que pode ser usada para geração de código simples, construindo classes corretas no momento da construção.
+**** Unit Testing and Specifications.
+***** Given Events in the past.
+***** When Aggregate method is called.
+***** Expect the following Events or an exception.
+*** Natureza funcional; Pode ser expressa numa linguagem funcional.
+
 
 @endmindmap

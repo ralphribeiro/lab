@@ -1,39 +1,22 @@
-from __future__ import annotations
-from dataclasses import dataclass
-from decimal import Decimal
+class SomenteUmaAtribuiçãoMixin():
+    __slots__ = ()
+
+    def __setitem__(self, k, v):
+        if k in self:
+            raise AttributeError
+        super().__setitem__(k, v)
 
 
-class ExceçãoMoedaDiferente(Exception):
+class SomenteUmaAtribuiçãoNoDict(SomenteUmaAtribuiçãoMixin, dict):
     ...
 
 
-@dataclass(frozen=True)
-class Moeda:
-    """
-    Objeto de valor do tipo moeda
-    """
-    nome: str
-    quantidade: Decimal
+class SomenteUmaAtribuiçãoNoDict2(dict, SomenteUmaAtribuiçãoMixin):
+    ...
 
-    def __add__(self, other: Moeda):
-        if not self.nome == other.nome:
-            raise ExceçãoMoedaDiferente
-        return Moeda(self.nome, self.quantidade + other.quantidade)
-
-    def __sub__(self, other: Moeda):
-        cls = type(self)
-        if not self.nome == other.nome:
-            raise ExceçãoMoedaDiferente
-        return cls(self.nome, self.quantidade - other.quantidade)
-
-    def __mul__(self, other: Moeda):
-        if not self.nome == other.nome:
-            raise ExceçãoMoedaDiferente
-        return Moeda(self.nome, self.quantidade * other.quantidade)
-
-    def __truediv__(self, other: Moeda):
-        if not self.nome == other.nome:
-            raise ExceçãoMoedaDiferente
-        return Moeda(self.nome, self.quantidade / other.quantidade)
+def print_mro(obj):
+    print(', '.join(str(m) for m in obj.__mro__))
 
 
+print_mro(SomenteUmaAtribuiçãoNoDict)
+print_mro(SomenteUmaAtribuiçãoNoDict2)
