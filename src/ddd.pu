@@ -146,6 +146,10 @@ arrow {
 **** de Aplicação
 **** de transformação
 **** de Testes
+**** Testes
+***** Quando os testes de aceitação no domínio forem validados então reescrevê-los (os pertinentes) na camada de serviços pois os primeiros se tornam fortemente acoplados ao domínio portanto tornando futuras alterações no modelo de domínio desencorajadoras.
+***** Expresse sua camada de serviço em termos de primitivos em vez de objetos de domínio.
+***** Em um mundo ideal, você terá todos os serviços de que precisa para poder testar inteiramente na camada de serviço, em vez de hackear o estado por meio de repositórios ou banco de dados. Isso também compensa em seus testes de ponta a ponta.
 *** Eventos
 **** de Domínio
 ***** Publish-Subscribe/Observer

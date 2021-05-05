@@ -4,3 +4,4 @@ __pycache__/
 poetry.lock
 sprites/
 .pytest_cache/
+src/ddd.png
