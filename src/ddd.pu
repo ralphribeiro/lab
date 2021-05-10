@@ -166,6 +166,7 @@ arrow {
 ******* RESTfull
 ******* Messaging Middleware
 **** da Aplicação
+**** Não misturar exceções junto com eventos no fluxo de controle
 *** Módulos
 **** • Porjetar para se adequar aos conceitos de modelagem.\n• Nomear com a Linguagem ubíqua.\n• Não criar módulos mecanicamente de acordo com com componentes de tipo genérico ou padrões usados na modelagem.\n • Projetar módulos com acoplamento fraco.\n • Se esforçar para ter dependências acíclicas em seus pares onde o acoplamento é necessário.\n• Relaxe um pouco para as regras entre os módulos filho e pai.\n• Não tornar os módulos estáticos, permita-os serem modelados juntos com os objetos que eles organizam.
 **** Nomeação
