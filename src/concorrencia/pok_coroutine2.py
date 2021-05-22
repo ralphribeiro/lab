@@ -1,11 +1,13 @@
 import asyncio
 import logging
+import itertools
 from os import mkdir
 from os.path import dirname, exists
 from os.path import join as p_join
 from shutil import rmtree
 from time import perf_counter_ns
 from urllib.parse import urljoin
+
 
 from aiofiles import open as aopen
 from aiohttp import ClientSession
@@ -64,11 +66,24 @@ async def pipe_sprt(url_sprite: str, name: str):
         logging.info(f'feito! {name}, {ret} bytes')
 
 
+async def spin(msg):
+    for char in itertools.cycle('|/-\\'):
+        status = char + ' ' + msg
+        print(status, flush=True, end='\r')
+        try:
+            await asyncio.sleep(.1)
+        except asyncio.CancelledError:
+            break
+    print(' ' * len(status), end='\r')
+
+
 async def processing():
     tasks = [asyncio.create_task(pipe_sprt(p['url'], p['name'])) for p in poks]
+    spinner = asyncio.create_task(spin('carregando...'))
+    print(spinner)
     for task in tasks:
         await task
-
+    spinner.cancel()
 
 @timer
 def main():
