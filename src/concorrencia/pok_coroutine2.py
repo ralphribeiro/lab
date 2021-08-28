@@ -79,11 +79,11 @@ async def spin(msg):
 
 async def processing():
     spinner = asyncio.create_task(spin('carregando...'))
-    print(spinner)
     await asyncio.gather(
         *[asyncio.create_task(pipe_sprt(p['url'], p['name'])) for p in poks]
     )
     spinner.cancel()
+
 
 @timer
 def main():
