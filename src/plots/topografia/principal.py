@@ -42,9 +42,6 @@ def set_aspect_equal_3d(ax):
 
 def get_plot(df: pd.DataFrame):
     plt.style.use('_classic_test_patch')
-
-    # print(plt.style.available)
-
     fig = plt.figure(figsize=(15, 15), dpi=100)
     ax = fig.add_subplot(projection='3d')
     fig2 = plt.figure()
@@ -75,10 +72,22 @@ def get_plot(df: pd.DataFrame):
     xi = np.linspace(min(xx), max(xx))
     yi = np.linspace(min(yy), max(yy))
     X, Y = np.meshgrid(xi, yi)
-    Z = griddata((xx, yy), zz, (xi[None, :], yi[:, None]),
-                 method='nearest', rescale=True)
-    ZZ = griddata((xx, yy), zz, (xi[None, :],
-                                 yi[:, None]), method='linear', rescale=True)
+    
+    Z = griddata(
+        (xx, yy),
+        zz,
+        (xi[None, :], yi[:, None]),
+        method='nearest',
+        rescale=True
+    )    
+    ZZ = griddata(
+        (xx, yy),
+        zz,
+        (xi[None, :],
+        yi[:, None]),
+        method='linear',
+        rescale=True
+    )
 
     ax.contourf(X, Y, Z, 300, cmap=plt.cm.bone,
                 corner_mask=True, alpha=0.2, origin=None)
