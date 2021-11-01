@@ -8,7 +8,6 @@ import numpy as np
 
 def open_(path_='PTS-0000.csv'):
     df = pd.read_csv('PTS-0000.csv')
-    # nan_df = df[df.isna().any(axis=1)]
     df.dropna(inplace=True)
     df.sort_values(by='nome', ascending=True, inplace=True)
     df['azimute'] = pd.to_numeric(df['azimute'] - 1500)
