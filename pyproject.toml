@@ -5,7 +5,7 @@ description = ""
 authors = ["ralphribeiro <ralph_ribeiro@msn.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "3.9.7"
 matplotlib = "^3.3.2"
 numpy = "^1.19.3"
 requests = "^2.25.0"
