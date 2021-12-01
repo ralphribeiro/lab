@@ -1,0 +1,53 @@
+@startuml
+
+abstract Transporte{
+    {abstract} fabrica_transporte(self)
+    transporta(self)
+}
+
+abstract Tipo{
+    {abstract} transporta(self)
+    {abstract} no_transporte(self)
+}
+
+class TransporteCaminhão{
+    fabrica_transporte(self)
+}
+
+Transporte <|-- TransporteCaminhão
+Caminhão <--- TransporteCaminhão
+
+class TransporteTrem{
+    fabrica_transporte(self)
+}
+
+Transporte <|--- TransporteTrem
+Trem <-- TransporteTrem
+
+class Caminhão{
+    transporta()
+    no_transporte()
+}
+
+Tipo <|--- Caminhão
+
+class Trem{
+    transporta()
+    no_transporte()
+}
+
+Tipo <|--- Trem
+
+object main{
+    transporte.transporta()
+}
+
+Transporte <.. main
+
+circle client
+
+TransporteCaminhão <-- client
+TransporteTrem <-- client
+
+main <-- client
+@enduml

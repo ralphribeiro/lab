@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Transporte(ABC):
     @abstractmethod
     def fabrica_transporte(self):
@@ -8,9 +9,8 @@ class Transporte(ABC):
 
     def transporta(self):
         transporte = self.fabrica_transporte()
-        transporte.transporta()
+        transporte.transporta()  # type: ignore
 
-a = sum([1, 2, 3])
 
 class Tipo(ABC):
     @abstractmethod
@@ -27,13 +27,14 @@ class TransporteCaminhão(Transporte):
         super().fabrica_transporte()
         return Caminhão()
 
+
 class TransporteTrem(Transporte):
     def fabrica_transporte(self):
         super().fabrica_transporte()
         return Trem()
 
 
-class Caminhão():
+class Caminhão(Tipo):
     def transporta(self):
         print("transportar de caminhão")
 
@@ -41,7 +42,7 @@ class Caminhão():
         print("siga bem irmão caminhoneiro")
 
 
-class Trem():
+class Trem(Tipo):
     def transporta(self):
         print("transportar de trem")
 
@@ -59,6 +60,6 @@ def print_mro(obj):
 
 if __name__ == "__main__":
     print_mro(TransporteTrem)
-    print_mro(TransporteCaminhão)    
+    print_mro(TransporteCaminhão)
     main(TransporteTrem())
     main(TransporteCaminhão())
