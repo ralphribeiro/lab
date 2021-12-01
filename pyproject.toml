@@ -20,6 +20,7 @@ ipykernel = "^5.4.3"
 pvlib = "^0.8.1"
 paho-mqtt = "^1.5.1"
 plotly = "^5.3.1"
+websockets = "^10.1"
 
 [tool.poetry.dev-dependencies]
 pylama = "^7.7.1"
