@@ -3,7 +3,7 @@ from functools import wraps
 
 def pipilini(*funcs):
     wraps(*funcs)
-    def inner(data, funcs=funcs):
+    def inner(data):
         result = data
         for f in funcs:
             result = f(result)
