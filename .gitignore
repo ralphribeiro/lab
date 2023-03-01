@@ -6,3 +6,4 @@ sprites/
 .pytest_cache/
 src/ddd.png
 .python-version
+.DS_Store

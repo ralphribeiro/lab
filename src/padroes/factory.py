@@ -22,18 +22,6 @@ class Tipo(ABC):
         ...
 
 
-class TransporteCaminhão(Transporte):
-    def fabrica_transporte(self):
-        super().fabrica_transporte()
-        return Caminhão()
-
-
-class TransporteTrem(Transporte):
-    def fabrica_transporte(self):
-        super().fabrica_transporte()
-        return Trem()
-
-
 class Caminhão(Tipo):
     def transporta(self):
         print("transportar de caminhão")
@@ -50,12 +38,24 @@ class Trem(Tipo):
         print("cuidado com os surfistas")
 
 
-def main(transporte: Transporte):
-    transporte.transporta()
+class TransporteCaminhão(Transporte):
+    def fabrica_transporte(self):
+        super().fabrica_transporte()
+        return Caminhão()
+
+
+class TransporteTrem(Transporte):
+    def fabrica_transporte(self):
+        super().fabrica_transporte()
+        return Trem()
 
 
 def print_mro(obj):
     print(', '.join(str(m) for m in obj.__mro__))
+
+
+def main(transporte: Transporte):
+    transporte.transporta()
 
 
 if __name__ == "__main__":
